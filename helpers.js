@@ -185,6 +185,29 @@ helpers.findNearestUnownedDiamondMine = function(gameData) {
   return pathInfoObject.direction;
 };
 
+// Returns the opposite direction from nearest enemy
+helpers.runAway = function(gameData) {
+  var enemyDirection = helpers.findNearestEnemy(gameData);
+
+  switch(enemyDirection) {
+  case 'East':
+      return 'West';
+      break;
+  case 'West':
+      return 'East';
+      break;
+  case 'South':
+      return 'North';
+      break;
+  case 'North':
+      return 'South';
+      break;
+  default:
+      return false;
+  }
+
+}
+
 // Returns the nearest health well or false, if there are no health wells
 helpers.findNearestHealthWell = function(gameData) {
   var hero = gameData.activeHero;
