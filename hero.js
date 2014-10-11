@@ -1,27 +1,24 @@
-// Kisios
+// KISIOS The Killer
 var move = function(gameData, helpers) {
-  var myHero = gameData.activeHero;
+   var KISIOS = gameData.activeHero;
 
-  console.log(gameData)
+   // Need hp to survive two blows
+   if (KISIOS.health < 50) {
+     return helpers.findNearestHealthWell(gameData);
+   
+   // Attack whoever is near
+   } else if (helpers.findNearestEnemy(gameData)) {
+     return helpers.findNearestEnemy(gameData);
 
-  var healthWellStats = helpers.findNearestObjectDirectionAndDistance(gameData.board, myHero, function(boardTile) {
-    if (boardTile.type === 'HealthWell') {
-      return true;
-    }
-  });
-  var distanceToHealthWell = healthWellStats.distance;
-  var directionToHealthWell = healthWellStats.direction;
-  
-
-  if (myHero.health < 60) {
-    return helpers.findNearestHealthWell(gameData);
-  } else if (myHero.health < 80 && distanceToHealthWell === 1) {
-    return helpers.findNearestHealthWell(gameData);
-  } else if (helpers.findNearestWeakerEnemy(gameData)) {    
-    return helpers.findNearestWeakerEnemy(gameData);
-  } else {
-    return helpers.findNearestUnownedDiamondMine(gameData);
-  }
+   // Go get diamonds if everyone is dead
+   } else {
+    return helpers.findNearestNonTeamDiamondMine(gameData);
+   }
 };
 
 module.exports = move;
+
+
+cat names.table | awk '{ if ( NR > 1  ) print $1 " " $2 " " $7}'
+cat names.table | tail -2 | awk 'if ( NR > 1  ){print $1 " " $2 " " $7}'
+cat names.table | sed "1 d" | awk '{print $1 " " $2 " " $7}'

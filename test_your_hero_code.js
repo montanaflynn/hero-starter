@@ -37,6 +37,7 @@ var game = new Game(5);
 
 //Add a health well in the middle of the board
 game.addHealthWell(2,2);
+game.addHealthWell(2,2);
 
 //Add diamond mines on either side of the health well
 game.addDiamondMine(2,1);
@@ -56,7 +57,7 @@ console.log('About to start the game!  Here is what the board looks like:');
 game.board.inspect();
 
 //Play a very short practice game
-var turnsToPlay = 15;
+var turnsToPlay = 50;
 
 for (var i=0; i<turnsToPlay; i++) {
   var hero = game.activeHero;
