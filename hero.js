@@ -2,6 +2,8 @@
 var move = function(gameData, helpers) {
   var myHero = gameData.activeHero;
 
+  console.log(gameData)
+
   var healthWellStats = helpers.findNearestObjectDirectionAndDistance(gameData.board, myHero, function(boardTile) {
     if (boardTile.type === 'HealthWell') {
       return true;
